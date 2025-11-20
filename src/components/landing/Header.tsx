@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { Code, Menu } from "lucide-react";
+import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -12,6 +12,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
+import { Logo } from "@/components/icons/Logo";
 
 const navLinks = [
   { href: "#projects", label: "Projects" },
@@ -46,7 +47,7 @@ export function Header() {
     >
       <div className="container flex h-16 items-center">
         <Link href="/" className="mr-6 flex items-center gap-2">
-          <Code className="h-6 w-6 text-primary" />
+          <Logo className="h-6 w-6 text-primary" />
           <span className="font-headline text-xl font-bold">Xacto Hub</span>
         </Link>
 
@@ -79,7 +80,7 @@ export function Header() {
                 <SheetHeader>
                   <SheetTitle>
                     <Link href="/" className="flex items-center gap-2">
-                      <Code className="h-6 w-6 text-primary" />
+                      <Logo className="h-6 w-6 text-primary" />
                       <span className="font-headline text-xl font-bold">Xacto Hub</span>
                     </Link>
                   </SheetTitle>
