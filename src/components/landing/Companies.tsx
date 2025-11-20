@@ -3,6 +3,8 @@ import { companies } from "@/lib/data";
 import { Section } from "./Section";
 
 export function Companies() {
+  const allCompanies = [...companies, ...companies]; // Duplicate for seamless scroll
+
   return (
     <Section id="companies">
       <div className="flex flex-col items-center gap-4 text-center">
@@ -13,10 +15,10 @@ export function Companies() {
           We've had the privilege of working with a diverse range of forward-thinking companies.
         </p>
       </div>
-      <div className="mt-12">
-        <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12 lg:gap-16">
-          {companies.map((company) => (
-            <div key={company.id} className="flex items-center justify-center">
+      <div className="relative mt-12 w-full overflow-hidden">
+        <div className="flex w-max animate-marquee hover:[animation-play-state:paused]">
+          {allCompanies.map((company, index) => (
+            <div key={`${company.id}-${index}`} className="flex flex-shrink-0 items-center justify-center px-8 md:px-12 lg:px-16">
               <Image
                 src={company.logo.src}
                 alt={company.name}
@@ -28,6 +30,8 @@ export function Companies() {
             </div>
           ))}
         </div>
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background to-transparent"></div>
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background to-transparent"></div>
       </div>
     </Section>
   );

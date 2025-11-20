@@ -20,7 +20,7 @@ export function Technologies() {
           are scalable, secure, and future-proof.
         </p>
       </div>
-      <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-6 lg:grid-cols-6">
+      <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-6 lg:grid-cols-3">
         {technologies.map((tech, index) => (
           <div
             key={tech.name}

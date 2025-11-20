@@ -70,6 +70,21 @@ export const technologies: Technology[] = [
     icon: Cloud,
     description: "Leveraging cloud infrastructure for robust, scalable, and reliable solutions.",
   },
+  {
+    name: "UI/UX Design",
+    icon: Palette,
+    description: "Crafting intuitive and beautiful user interfaces that provide a seamless user experience.",
+  },
+  {
+    name: "Security",
+    icon: ShieldCheck,
+    description: "Ensuring your applications are secure, reliable, and compliant with industry standards.",
+  },
+  {
+    name: "Performance",
+    icon: Zap,
+    description: "Fine-tuning your applications for lightning-fast load times and a smooth user experience.",
+  }
 ];
 
 export const testimonials: Testimonial[] = [
