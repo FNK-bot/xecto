@@ -31,7 +31,7 @@ export function Footer() {
               <span className="sr-only">LinkedIn</span>
             </Link>
           </Button>
-           <Link href="/submit" className="text-sm text-muted-foreground hover:text-foreground">
+           <Link href="/login" className="text-sm text-muted-foreground hover:text-foreground">
               Admin
             </Link>
         </div>

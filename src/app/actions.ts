@@ -6,6 +6,8 @@ import { collection, addDoc } from "firebase/firestore";
 import { revalidatePath } from "next/cache";
 import { analyzeProjectSubmission } from "@/ai/flows/analyze-project-submissions";
 import type { AnalyzeProjectSubmissionOutput } from "@/ai/flows/analyze-project-submissions";
+import { redirect } from 'next/navigation';
+import { getSession, login as createSession } from '@/lib/session';
 
 // Schema for contact form
 const contactSchema = z.object({
@@ -60,6 +62,11 @@ export async function submitProject(
   prevState: ProjectSubmissionState,
   formData: FormData
 ): Promise<ProjectSubmissionState> {
+  const session = await getSession();
+  if (!session) {
+    redirect('/login');
+  }
+
   const validatedFields = projectSchema.safeParse(Object.fromEntries(formData.entries()));
 
   if (!validatedFields.success) {
@@ -114,4 +121,31 @@ export async function submitProject(
       analysis: null,
     };
   }
+}
+
+const loginSchema = z.object({
+  username: z.string(),
+  password: z.string(),
+});
+
+export async function login(prevState: any, formData: FormData) {
+  const validatedFields = loginSchema.safeParse(
+    Object.fromEntries(formData.entries())
+  );
+
+  if (!validatedFields.success) {
+    return { message: 'Invalid form data.' };
+  }
+
+  const { username, password } = validatedFields.data;
+
+  const adminUser = process.env.ADMIN_USER ?? 'admin';
+  const adminPass = process.env.ADMIN_PASS ?? '12345678';
+
+  if (username === adminUser && password === adminPass) {
+    await createSession({ username });
+    redirect('/submit');
+  }
+
+  return { message: 'Invalid username or password.' };
 }
