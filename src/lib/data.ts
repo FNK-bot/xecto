@@ -1,5 +1,5 @@
 import type { Project, Technology, Testimonial, Company } from "@/lib/types";
-import { Code, Bot, Database, Cloud, Palette, ShieldCheck, Zap } from "lucide-react";
+import { Code, Bot, Database, Cloud, Palette, ShieldCheck, Zap, TrendingUp } from "lucide-react";
 import { ReactIcon } from "@/components/icons/ReactIcon";
 import { NextjsIcon } from "@/components/icons/NextjsIcon";
 import { FirebaseIcon } from "@/components/icons/FirebaseIcon";
@@ -74,6 +74,11 @@ export const technologies: Technology[] = [
     name: "UI/UX Design",
     icon: Palette,
     description: "Crafting intuitive and beautiful user interfaces that provide a seamless user experience.",
+  },
+  {
+    name: "SEO",
+    icon: TrendingUp,
+    description: "Optimizing your web applications for search engines to drive organic traffic and improve visibility.",
   },
   {
     name: "Security",
