@@ -1,6 +1,6 @@
 'use client';
 
-import { useActionState } from 'react';
+import { useActionState, useEffect } from 'react';
 import { useFormStatus } from 'react-dom';
 import { login } from '@/app/actions';
 import { Button } from '@/components/ui/button';
@@ -15,7 +15,6 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { LogIn } from 'lucide-react';
-import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
 function SubmitButton() {
