@@ -1,6 +1,6 @@
 "use client";
 
-import { useFormState } from "react-hook-form";
+import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 import { Button } from "@/components/ui/button";
 import {
@@ -41,7 +41,7 @@ const initialState = {
 };
 
 export function ProjectSubmissionForm() {
-  const [state, formAction] = useFormState(submitProject, initialState);
+  const [state, formAction] = useActionState(submitProject, initialState);
   const { toast } = useToast();
   const formRef = useRef<HTMLFormElement>(null);
 

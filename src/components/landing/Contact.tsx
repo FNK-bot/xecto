@@ -1,6 +1,7 @@
 "use client";
 
-import { useFormState, useFormStatus } from "react-dom";
+import { useActionState, useEffect, useRef } from "react";
+import { useFormStatus } from "react-dom";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -14,7 +15,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { submitContactForm } from "@/app/actions";
-import { useEffect, useRef } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Section } from "./Section";
 
@@ -24,7 +24,7 @@ function SubmitButton() {
 }
 
 export function Contact() {
-  const [state, formAction] = useFormState(submitContactForm, {
+  const [state, formAction] = useActionState(submitContactForm, {
     message: "",
     errors: {},
   });
