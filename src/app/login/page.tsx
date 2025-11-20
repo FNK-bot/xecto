@@ -15,6 +15,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { LogIn } from 'lucide-react';
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 function SubmitButton() {
   const { pending } = useFormStatus();
@@ -27,10 +29,18 @@ function SubmitButton() {
 
 const initialState = {
   message: '',
+  success: false,
 };
 
 export default function LoginPage() {
   const [state, formAction] = useActionState(login, initialState);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (state.success) {
+      router.push('/submit');
+    }
+  }, [state.success, router]);
 
   return (
     <main className="container mx-auto flex min-h-screen max-w-sm flex-col items-center justify-center px-4">
@@ -58,7 +68,7 @@ export default function LoginPage() {
               <Input id="password" name="password" type="password" required />
             </div>
 
-            {state?.message && (
+            {state?.message && !state.success && (
               <Alert variant="destructive">
                 <LogIn className="h-4 w-4" />
                 <AlertTitle>Login Failed</AlertTitle>

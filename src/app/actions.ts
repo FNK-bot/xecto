@@ -128,13 +128,18 @@ const loginSchema = z.object({
   password: z.string(),
 });
 
-export async function login(prevState: any, formData: FormData) {
+type LoginState = {
+  message: string;
+  success: boolean;
+};
+
+export async function login(prevState: LoginState, formData: FormData): Promise<LoginState> {
   const validatedFields = loginSchema.safeParse(
     Object.fromEntries(formData.entries())
   );
 
   if (!validatedFields.success) {
-    return { message: 'Invalid form data.' };
+    return { message: 'Invalid form data.', success: false };
   }
 
   const { username, password } = validatedFields.data;
@@ -144,8 +149,9 @@ export async function login(prevState: any, formData: FormData) {
 
   if (username === adminUser && password === adminPass) {
     await createSession({ username });
-    redirect('/submit');
+    revalidatePath('/submit');
+    return { message: 'Login successful!', success: true };
   }
 
-  return { message: 'Invalid username or password.' };
+  return { message: 'Invalid username or password.', success: false };
 }
