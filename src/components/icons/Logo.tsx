@@ -7,11 +7,12 @@ export function Logo({ className }: { className?: string }) {
       aria-hidden="true"
     >
       <path
-        d="M20 20 L80 80 M80 20 L20 80"
+        d="M35 20 L15 50 L35 80 M65 20 L85 50 L65 80"
         stroke="currentColor"
         strokeWidth="12"
         strokeLinecap="round"
         strokeLinejoin="round"
+        fill="none"
       />
     </svg>
   );
